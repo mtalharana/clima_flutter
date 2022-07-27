@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:clima_flutter/services/location.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:clima_flutter/services/networking.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -11,35 +10,31 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  late double longitude;
+  late double latitude;
+  var accuweatherapikey = "FIdb3pNAjsMROx6tiw6S2V5Tkp7Bev0E";
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationdata();
   }
 
-  void getLocation() async {
+  void getLocationdata() async {
     Location location = Location();
     await location.getcurrentLocation();
-    print(location.latitude);
-    print(location.longitude);
-  }
-
-  void getdata() async {
-    http.Response response = await http.get(Uri.parse(
-        'http://dataservice.accuweather.com/currentconditions/v1/259645?apikey=FIdb3pNAjsMROx6tiw6S2V5Tkp7Bev0E'));
-    if (response.statusCode == 200) {
-      String data = response.body.toString();
-
-      var temp = jsonDecode(data)[0]['Temperature']['Metric']['Value'];
-      print(temp);
-    } else {
-      print(response.statusCode);
-    }
+    latitude = location.latitude;
+    longitude = location.longitude;
+    Networkhelper networkhelper = Networkhelper(
+        'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search.json?q=$latitude,$longitude&apikey=$accuweatherapikey');
+    var citydata = await networkhelper.getData();
+    Networkhelper networkhelper2 = Networkhelper(
+        'http://dataservice.accuweather.com/currentconditions/v1/$cityid?apikey=$accuweatherapikey');
+    var weatherdata = await networkhelper2.getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    getdata();
+    getLocationdata();
     return Scaffold(
       body: Center(
         child: ElevatedButton(
@@ -50,3 +45,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 }
+
+    // var cityname = citydata['EnglishName'];
+    // var cityid = citydata['Key'];
+    // var temp = weatherdata[0]['Temperature']['Metric']['Value'];
+    // var weather = weatherdata[0]['WeatherText'];
+    // var icon = weatherdata[0]['WeatherIcon'];
