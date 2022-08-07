@@ -53,7 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images\\location_background.jpg'),
+            image: AssetImage('images/1.webp'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 Colors.white.withOpacity(0.8), BlendMode.dstATop),
@@ -79,11 +79,17 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      var typedcityname = await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => CityScreen()),
                       );
+                      if (typedcityname != null) {
+                        var weatherdata = await weather.getcityweather(
+                          typedcityname,
+                        );
+                        updateUI(weatherdata);
+                      }
                     },
                     child: const Icon(
                       Icons.location_city,

@@ -36,4 +36,11 @@ class WeatherModel {
       return '🤷‍';
     }
   }
+
+  Future<dynamic> getcityweather(typedcityname) async {
+    var url = '$openweathermapurl?q=$typedcityname&appid=$apiKey&units=metric';
+    Networkhelper citynetworkhelper = Networkhelper(url);
+    var weatherdata = await citynetworkhelper.getData();
+    return weatherdata;
+  }
 }
