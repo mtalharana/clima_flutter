@@ -1,16 +1,16 @@
-# clima_flutter
+# 6. Weather App 
 
-A new Flutter project.
+Project Description:
+The weather app is implemented to learn about API Integration, JSON Handling, location data, Future Functions, Sync await keywords, Networking   HTTP packages, adding a spinner while waiting, passing data to a state object, Refratoring functions, Better UI and passing data across screens.
+Code:
+https://github.com/mtalharana/clima_flutter
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Stay Tuned for my Thrilling, Consistent, and problem-solving flutter journey.
 
-A few resources to get you started if this is your first Flutter project:
+Please react with Love, Comment, Repost, or send it to those you care much, about this fantastic journey.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ #flutter  #lahorejobs  #hr #hiring
+#flutterdev #fluttercommunity #flutterjobs
+
